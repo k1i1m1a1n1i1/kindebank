@@ -1,3 +1,6 @@
+server:
+  port: ${PORT:8080}  # Railway provides this automatically
+
 spring:
   datasource:
     url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
@@ -8,12 +11,4 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-server:
-  port: ${PORT:8080}  # Railway automatically injects PORT
-
-logging:
-  level:
-    org.springframework: INFO
-    com.kindebank: DEBUG
+    open-in-view: false  # optional, avoids "open-in-view" warning
