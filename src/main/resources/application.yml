@@ -3,10 +3,17 @@ spring:
     url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
     username: ${PGUSER}
     password: ${PGPASSWORD}
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
 server:
-  port: ${PORT:8080}  # Railway will override PORT automatically
+  port: ${PORT:8080}  # Railway automatically injects PORT
+
+logging:
+  level:
+    org.springframework: INFO
+    com.kindebank: DEBUG
