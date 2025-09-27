@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080}  # Railway provides this automatically
+  port: ${PORT:8080}  # Railway will inject the correct web port
 
 spring:
   datasource:
@@ -11,4 +11,4 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    open-in-view: false  # optional, avoids "open-in-view" warning
+    open-in-view: false
