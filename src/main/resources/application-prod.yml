@@ -1,15 +1,20 @@
 server:
-  # bind to platform-supplied PORT if present, otherwise default to 8080
-  port: ${PORT:8080}
+  address: 0.0.0.0
+  port: ${PORT:8080}  # Railway dynamically assigns container port
 
 spring:
   datasource:
-    # build a proper JDBC URL from env vars Railway provides
-    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}?sslmode=require
     username: ${PGUSER}
     password: ${PGPASSWORD}
-
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: false       # hide SQL logs in production
+    open-in-view: false
+
+# Force Spring to use prod profile
+spring:
+  profiles:
+    active: prod
